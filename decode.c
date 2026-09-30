@@ -213,15 +213,15 @@ Status decode_secret_file_data(DecodeInfo *decInfo)
 
     for(int i=0;i < decInfo->secret_file_size; i++)
     {
-        if(fread(buffer,8,1,decInfo->fptr_stego_image) == 0)
+        if(fread(buffer,8,1,decInfo -> fptr_stego_image) == 0)
             return e_failure;
 
         char ch = 0;
 
-        for(int j=7; j>=0; j--)
-        {    //decoding 
+        for(int j = 7; j >= 0; j--)
+        {   
             if(buffer[7- j] & 1)
-                ch = ch | (1<<j);
+                ch = ch | (1 << j);
         }
 
         if(fwrite(&ch,1,1,decInfo->fptr_decode) == 0)
